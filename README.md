@@ -8,8 +8,8 @@ You'll get a json file which you'll need to upload to your website, along a js s
 
 <details>
 <summary>check the code</summary>
+  
 ```javascript
-
 function formatarData(dataIso) {
 
   if (!dataIso) return "SEM DATA";
