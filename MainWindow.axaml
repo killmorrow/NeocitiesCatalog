@@ -1,0 +1,667 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MediaManager.MainWindow"
+        Width="700"
+        Height="650"
+        Title="Media Manager"
+        Background="#18151C">
+
+    <Window.Styles>
+
+        <!-- BOTÕES -->
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4A285F"/>
+            <Setter Property="Foreground" Value="#F3E9F8"/>
+            <Setter Property="BorderBrush" Value="#70458A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="12,8"/>
+        </Style>
+
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#5C3475"/>
+            <Setter Property="BorderBrush" Value="#8A5AA3"/>
+        </Style>
+
+        <Style Selector="Button:pressed">
+            <Setter Property="Background" Value="#382047"/>
+        </Style>
+
+        <!-- CAIXAS DE TEXTO -->
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#242027"/>
+            <Setter Property="Foreground" Value="#F3E9F8"/>
+            <Setter Property="BorderBrush" Value="#5B426A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,8"/>
+        </Style>
+
+        <!-- CHECKBOX -->
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="#F3E9F8"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <!-- DATE PICKER -->
+        <Style Selector="DatePicker">
+            <Setter Property="Background" Value="#242027"/>
+            <Setter Property="Foreground" Value="#F3E9F8"/>
+            <Setter Property="BorderBrush" Value="#5B426A"/>
+        </Style>
+
+    </Window.Styles>
+
+
+    <Grid>
+
+        <!-- ===================================================== -->
+        <!-- MENU PRINCIPAL -->
+        <!-- ===================================================== -->
+
+        <StackPanel
+            x:Name="MainMenu"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="300"
+            Spacing="18">
+
+            <TextBlock
+                Text="MEDIA MANAGER"
+                FontSize="34"
+                FontWeight="Bold"
+                Foreground="#D8BCE5"
+                HorizontalAlignment="Center"/>
+
+            <TextBlock
+                Text="what are you trying to log?"
+                FontSize="17"
+                Foreground="#A996B1"
+                HorizontalAlignment="Center"
+                Margin="0,0,0,8"/>
+
+
+            <StackPanel
+                HorizontalAlignment="Center"
+                Width="260"
+                Spacing="10">
+
+                <Button
+                    Content="📖  books"
+                    Width="260"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    Click="Books_Click"/>
+
+                <Button
+                    Content="🎮  games"
+                    Width="260"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    Click="Games_Click"/>
+
+                <Button
+                    Content="🎬  movies"
+                    Width="260"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    Click="Movies_Click"/>
+
+                <Button
+                    Content="🎐  animes"
+                    Width="260"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    Click="Animes_Click"/>
+
+                <Button
+                    Content="⚙️ configuration"
+                    Width="260"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    Click="Configuration_Click"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <!-- ===================================================== -->
+        <!-- FORMULÁRIO DE LIVRO -->
+        <!-- ===================================================== -->
+
+        <ScrollViewer
+            x:Name="BooksForm"
+            IsVisible="False"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="500"
+            Height="600">
+
+            <StackPanel
+                Width="450"
+                Spacing="12">
+
+                <TextBlock
+                    Text="NEW BOOK"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#D8BCE5"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,8"/>
+
+                <TextBlock
+                    Text="Title"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="BookTitle"
+                    Watermark="Book title"/>
+
+                <TextBlock
+                    Text="Tags"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="BookTags"
+                    Watermark="fantasy, adventure"/>
+
+                <TextBlock
+                    Text="Rating"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="BookRating"
+                    Watermark="0 - 5 (0.5, 1, 1.5...)"/>
+
+                <CheckBox
+                    x:Name="BookPhysical"
+                    Content="Physical copy"/>
+
+                <TextBlock
+                    Text="Date"
+                    Foreground="#C5B3CC"/>
+
+                <DatePicker
+                    x:Name="BookDate"/>
+
+                <TextBlock
+                    Text="Review"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="BookReview"
+                    Watermark="Write your review..."
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    MinHeight="120"/>
+
+                <TextBlock
+                    x:Name="BookStatus"
+                    Text=""
+                    Foreground="#D8BCE5"
+                    TextWrapping="Wrap"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    Margin="0,8,0,0"/>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="12"
+                    Margin="0,8,0,0">
+
+                    <Button
+                        Content="← back"
+                        Width="120"
+                        Height="42"
+                        Click="Back_Click"/>
+
+                    <Button
+                        Content="GENERATE"
+                        Width="140"
+                        Height="42"
+                        Click="GenerateBook_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+        <!-- ===================================================== -->
+        <!-- FORMULÁRIO DE JOGOS -->
+        <!-- ===================================================== -->
+
+            <ScrollViewer
+            x:Name="GamesForm"
+            IsVisible="False"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="500"
+            Height="600">
+
+            <StackPanel
+                Width="450"
+                Spacing="12">
+
+                <TextBlock
+                    Text="NEW GAME"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#D8BCE5"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,8"/>
+
+                <TextBlock
+                    Text="Title"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="GameTitle"
+                    Watermark="Game title"/>
+
+                <TextBlock
+                    Text="Hours"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="GameHours"
+                    Watermark="Hours played:"/>
+
+                <TextBlock
+                    Text="Rating"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="GameRating"
+                    Watermark="0 - 5 (0.5, 1, 1.5...)"/>
+
+                <CheckBox
+                    x:Name="OwnedGame"
+                    Content="Owned?"/>
+
+                <TextBlock
+                    Text="Date"
+                    Foreground="#C5B3CC"/>
+
+                <DatePicker
+                    x:Name="GameDate"/>
+
+                <TextBlock
+                    Text="Review"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="GameReview"
+                    Watermark="Write your review..."
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    MinHeight="120"/>
+
+                <TextBlock
+                    x:Name="GameStatus"
+                    Text=""
+                    Foreground="#D8BCE5"
+                    TextWrapping="Wrap"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    Margin="0,8,0,0"/>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="12"
+                    Margin="0,8,0,0">
+
+                    <Button
+                        Content="← back"
+                        Width="120"
+                        Height="42"
+                        Click="Back_Click"/>
+
+                    <Button
+                        Content="GENERATE"
+                        Width="140"
+                        Height="42"
+                        Click="GenerateGame_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+        <!-- ===================================================== -->
+        <!-- FORMULÁRIO DE FILMES -->
+        <!-- ===================================================== -->
+
+        <ScrollViewer
+            x:Name="MoviesForm"
+            IsVisible="False"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="500"
+            Height="600">
+
+            <StackPanel
+                Width="450"
+                Spacing="12">
+
+                <TextBlock
+                    Text="NEW MOVIE"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#D8BCE5"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,8"/>
+
+                <TextBlock
+                    Text="Title"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="MovieTitle"
+                    Watermark="Movie title"/>
+
+                <TextBlock
+                    Text="Rating"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="MovieRating"
+                    Watermark="0 - 5 (0.5, 1, 1.5...)"/>
+
+                <CheckBox
+                    x:Name="Cinema"
+                    Content="At the cinema?"/>
+
+                <TextBlock
+                    Text="Date"
+                    Foreground="#C5B3CC"/>
+
+                <DatePicker
+                    x:Name="MovieDate"/>
+
+                <TextBlock
+                    Text="Review"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="MovieReview"
+                    Watermark="Write your review..."
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    MinHeight="120"/>
+
+                <TextBlock
+                    x:Name="MovieStatus"
+                    Text=""
+                    Foreground="#D8BCE5"
+                    TextWrapping="Wrap"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    Margin="0,8,0,0"/>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="12"
+                    Margin="0,8,0,0">
+
+                    <Button
+                        Content="← back"
+                        Width="120"
+                        Height="42"
+                        Click="Back_Click"/>
+
+                    <Button
+                        Content="GENERATE"
+                        Width="140"
+                        Height="42"
+                        Click="GenerateMovie_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+
+        <!-- ===================================================== -->
+        <!-- FORMULÁRIO DE ANIMES -->
+        <!-- ===================================================== -->
+
+        <ScrollViewer
+            x:Name="AnimesForm"
+            IsVisible="False"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="500"
+            Height="600">
+
+            <StackPanel
+                Width="450"
+                Spacing="12">
+
+                <TextBlock
+                    Text="NEW ANIME"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#D8BCE5"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,8"/>
+
+                <TextBlock
+                    Text="Title"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="AnimeTitle"
+                    Watermark="Anime title"/>
+
+                <TextBlock
+                    Text="Dubbed or subbed?"
+                    Foreground="#C5B3CC"/>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="12">
+                    <RadioButton
+                        x:Name="Dubbed"
+                        Content="Dubbed"
+                        GroupName="AnimeType"/>
+                    <RadioButton
+                        x:Name="Subbed"
+                        Content="Subbed"
+                        GroupName="AnimeType"/>
+
+                </StackPanel>
+
+                <TextBlock
+                    Text="Rating"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="AnimeRating"
+                    Watermark="0 - 5 (0.5, 1, 1.5...)"/>
+
+                <CheckBox
+                    x:Name="Manga"
+                    Content="Read the mangá?"/>
+
+                <TextBlock
+                    Text="Date"
+                    Foreground="#C5B3CC"/>
+
+                <DatePicker
+                    x:Name="AnimeDate"/>
+
+                <TextBlock
+                    Text="Review"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="AnimeReview"
+                    Watermark="Write your review..."
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    MinHeight="120"/>
+
+                <TextBlock
+                    x:Name="AnimeStatus"
+                    Text=""
+                    Foreground="#D8BCE5"
+                    TextWrapping="Wrap"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    Margin="0,8,0,0"/>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="12"
+                    Margin="0,8,0,0">
+
+                    <Button
+                        Content="← back"
+                        Width="120"
+                        Height="42"
+                        Click="Back_Click"/>
+
+                    <Button
+                        Content="GENERATE"
+                        Width="140"
+                        Height="42"
+                        Click="GenerateAnime_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+
+
+        <!-- ===================================================== -->
+        <!-- CONFIGURAÇÃO -->
+        <!-- ===================================================== -->
+
+        <ScrollViewer
+            x:Name="ConfigurationForm"
+            IsVisible="False"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Width="500"
+            Height="600">
+
+            <StackPanel
+                Width="450"
+                Spacing="12">
+
+                <TextBlock
+                    Text="CONFIGURATIONS"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="#D8BCE5"
+                    HorizontalAlignment="Center"
+                    Margin="0,0,0,8"/>
+
+                <TextBlock
+                    Text="Path to books.json"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="ConfigurationBooksJsonPath"
+                    Watermark="Path to books.json"/>
+
+                <TextBlock
+                    Text="Path to movies.json"
+                    Foreground="#C5B3CC"/>
+
+          <TextBox
+                    x:Name="ConfigurationMoviesJsonPath"
+                    Watermark="Path to movies.json"/>
+
+                <TextBlock
+                    Text="Path to games.json"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="ConfigurationGamesJsonPath"
+                    Watermark="Path to games.json"/>
+
+                <TextBlock
+                    Text="Path to animes.json"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="ConfigurationAnimesJsonPath"
+                    Watermark="Path to animes.json"/>
+
+                <TextBlock
+                    Text="Google Books API key"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="ConfigurationGoogleBooksApiKey"
+                    PasswordChar="*"
+                    PlaceholderText="Google Books API key"/>
+
+                <TextBlock
+                    Text="TMDB API key"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="ConfigurationTmdbApiKey"
+                    PasswordChar="*"
+                    PlaceholderText="TMDB API key"/>
+
+                <TextBlock
+                    Text="RAWG API key"
+                    Foreground="#C5B3CC"/>
+
+                <TextBox
+                    x:Name="ConfigurationRawgApiKey"
+                    PasswordChar="*"
+                    PlaceholderText="RAWG API key"/>
+
+                <TextBlock
+                    x:Name="ConfigurationStatus"
+                    Text=""
+                    Foreground="#D8BCE5"
+                    TextWrapping="Wrap"
+                    HorizontalAlignment="Center"
+                    TextAlignment="Center"
+                    Margin="0,8,0,0"/>
+
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="12"
+                    Margin="0,8,0,0">
+
+                    <Button
+                        Content="← back"
+                        Width="120"
+                        Height="42"
+                        Click="Back_Click"/>
+
+                    <Button
+                        Content="SAVE CHANGES"
+                        Width="160"
+                        Height="42"
+                        Click="ConfigurationSave_Click"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+
+
+    </Grid>
+
+</Window>
